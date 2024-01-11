@@ -1,0 +1,228 @@
+#:kivy 1.0
+#:import hex kivy.utils.get_color_from_hex
+
+<Btn@Button>:
+    background_normal: ''
+    background_color: hex('#00000')
+
+<MyTextInput@TextInput>:
+    font_size: '14dp'
+    background_color: 0,0,0,0
+    cursor_color: hex('#ffffff')
+    canvas.before:
+        Color:
+            rgba: hex('#dddddd')
+    canvas.after:
+        Color:
+            rgb: hex('#00000')
+        Ellipse:
+            angle_start:180
+            angle_end:360
+            pos:(self.pos[0] - self.size[1]/2.0, self.pos[1])
+            size: (self.size[1], self.size[1])
+        Ellipse:
+            angle_start:360
+            angle_end:540
+            pos: (self.size[0] + self.pos[0] - self.size[1]/2.0, self.pos[1])
+            size: (self.size[1], self.size[1])
+        Color:
+            rgba: hex('#3f92db')
+        Line:
+            points: self.pos[0] , self.pos[1], self.pos[0] + self.size[0], self.pos[1]
+        Line:
+            points: self.pos[0], self.pos[1] + self.size[1], self.pos[0] + self.size[0], self.pos[1] + self.size[1]
+        Line:
+            ellipse: self.pos[0] - self.size[1]/2.0, self.pos[1], self.size[1], self.size[1], 180, 360
+        Line:
+            ellipse: self.size[0] + self.pos[0] - self.size[1]/2.0, self.pos[1], self.size[1], self.size[1], 360, 540
+
+
+<LoginScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        spacing: '20dp'
+        padding: 0, '200dp'
+        
+        MyTextInput:
+            id: username_input
+            hint_text: 'Usuário'
+            multiline: False
+            size_hint: (0.5, 0.4)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+
+        MyTextInput:
+            id: password_input
+            hint_text: 'Senha'
+            password: True
+            multiline: False
+            size_hint: (0.5, 0.4)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+
+        Button:
+            text: 'Acessar'
+            size_hint: (0.5, 0.4)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            on_press: root.on_login()
+        Button:
+            text: 'Cadastrar'
+            size_hint: (0.5, 0.4)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            
+
+
+<MenuWindow>:
+    canvas.before:
+        Color: 
+            rgba: hex('#dddddd')
+        Rectangle: 
+            size:self.size
+            pos: self.pos
+
+    orientation: 'vertical'
+
+    BoxLayout:
+        size_hint_y: 0.1
+        
+        Button:
+            size_hint_x: 0.3
+            background_normal:'images/dubov.png'
+            border: 0, 0, 0, 0
+        
+        Label:
+            id: lbl_username
+            text:'ADMIN'
+            color: hex('#00000')
+
+        Btn:
+            id: sair_btn
+            size_hint_x: 0.25
+            text:'Sair'
+            color: hex('#ff6347')
+            on_release: app.sair()
+
+    ScrollView:
+        
+        orientation: 'vertical'
+        size_hint: (1, 0.8)
+        canvas.before:
+            Color: 
+                rgba: hex('#ddff')
+            Rectangle: 
+                size:self.size
+                pos: self.pos  
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint_y: None
+            height: '1000dp'
+
+            ## SUBSTITUINDO O PADDING
+            Label:
+                size_hint_y: 0.10
+                text:''
+
+            BoxLayout:
+                orientation:'horizontal'
+                size_hint_y: 0.2
+                TextInput:
+                    hint_text:'Buscar...'
+                Button:
+                    size_hint_x: 0.25
+                    text:'Lupa'
+
+            ## SUBSTITUINDO O PADDING
+            Label:
+                size_hint_y: 0.10
+                text:''
+
+            Button:
+                text:'post1'
+            BoxLayout:
+                orientation: 'horizontal'
+                size_hint_y: 0.2
+                Button:
+                    size_hint: (0.1, 0.5)
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                    background_normal:'images/heart.png'
+                    border: 0, 0, 0, 0
+                Label:
+                    size_hint_y: 1
+                    text:'Informações'
+                    color: hex('#00000')
+                Label:
+                    id: btn_preco
+                    size_hint_y: 1
+                    size_hint_x: 0.2
+                    text:'Preço'
+                    color: hex('#00000')
+
+            Button:
+                text:'post2'
+            BoxLayout:
+                orientation: 'horizontal'
+                size_hint_y: 0.2
+                Button:
+                    size_hint: (0.1, 0.5)
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                    background_normal:'images/heart.png'
+                    border: 0, 0, 0, 0
+                Label:
+                    size_hint_y: 1
+                    text:'Informações'
+                    color: hex('#00000')
+                Label:
+                    size_hint_y: 1
+                    size_hint_x: 0.2
+                    text:'Preço'
+                    color: hex('#00000')
+
+            Button:
+                text:'post3'
+            BoxLayout:
+                orientation: 'horizontal'
+                size_hint_y: 0.2
+                Button:
+                    size_hint: (0.1, 0.5)
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                    background_normal:'images/heart.png'
+                    border: 0, 0, 0, 0
+                Label:
+                    size_hint_y: 1
+                    text:'Informações'
+                    color: hex('#00000')
+                Label:
+                    size_hint_y: 1
+                    size_hint_x: 0.2
+                    text:'Preço'
+                    color: hex('#00000')
+            
+
+    BoxLayout:
+        spacing: '.5'
+        size_hint_y: 0.1
+        orientation: 'horizontal'
+        canvas.before:
+            Color: 
+                rgba: hex('#00000')
+            Rectangle: 
+                size:self.size
+                pos: self.pos    
+        Btn:
+            id: btn_imoveis
+            size_hint_x: 0.15
+            text:'Imóveis'
+            spacing:0.2
+            background_color: hex('#329f1b')
+        Btn:
+            id: btn_desejos
+            size_hint_x: 0.15
+            text:'Desejos'
+            background_color: hex('#329f1b')
+        Btn:
+            id: btn_perfil
+            size_hint_x: 0.15
+            text:'Perfil'
+            background_color: hex('#329f1b')
+        
+
+
+        
